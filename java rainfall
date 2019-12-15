@@ -1,0 +1,88 @@
+int input = 0;
+int x = 0;
+java.util.Scanner cin = new java.util.Scanner(System.in);
+vector<int> rain;
+
+
+System.out.println("Please enter daily rainfall data (-1 to quit):");
+while (true) {
+    //user inputs into the vector
+    x = cin.nextLine();
+    rain.add(x);
+    if (x == -1) break;
+    if (!cin.hasNextInt()) {
+        System.out.println("BAD INPUT!";)
+        return 0;
+    }
+    if (x < -1) {
+    }
+
+}
+
+rain.remove(vector.lastElement());
+//^^ gets rid of the last item in the vector which will be -1
+
+while (true) {
+
+    System.out.println("1) Average daily rainfall");
+    System.out.println("2) Average rainfall on rainy days");
+    System.out.println("3) Count of days that had rain");
+    System.out.println("4) Maximum rainfall");
+    System.out.println("5) Top 5 days of rain");
+    System.out.println("6) Quit");
+
+    input = cin.nextLine();
+    if (!cin) {
+        cout << "BAD INPUT!\n";
+        return 1;
+    }
+    if (input < 0) {
+        cout << "NO DATA\n";
+        return 0;
+    }
+
+    if (rain.size() == 0) {
+        cout << "NO DATA\n";
+        return 0;
+    }
+
+    if (input == 1 && rain.size() != 0) {
+        //adds all the elements in the vec and divides it by the # of elements (average)
+        int average = accumulate(rain.begin(), rain.end(), 0) / rain.size();
+        cout << average << "\n";
+    }
+
+    if (input == 2) {
+        //same as option 1 but ignoring the 0's
+        rain.erase(remove(rain.begin(), rain.end(), 0), rain.end());
+        cout << accumulate(rain.begin(), rain.end(), 0) / rain.size() << "\n";
+    }
+
+    if (input == 3) {
+        //ignore the zeros and add up the amount of elements in the vec
+        rain.erase(remove(rain.begin(), rain.end(), 0), rain.end());
+        cout << rain.size() << "\n";
+    }
+ if (input == 4) {
+        //get the highest number in the vec
+        sort(rain.begin(), rain.end(), greater());
+        for (size_t i = 0; i < rain.size(); i++) {
+        }
+        cout << rain.at(0) << "\n";
+    }
+
+    if (input == 5) {
+        //show the five highest numbers in the vec
+        sort(rain.begin(), rain.end(), greater<int>());
+        for (int i = rain.size(); i <= 5 ; i++) {
+            for (auto x : rain)
+                cout << x << "\n";
+        }
+
+    }
+
+    if (input == 6) return 0;
+
+    if (rain.size() == 0 || input < 1 || input > 6) {
+        cout << "NO DATA\n";
+    }
